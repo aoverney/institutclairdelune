@@ -4,9 +4,8 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Logo from '../components/Logo.astro';
 import AppelRdv from '../components/AppelRdv.astro';
-// Photo de l'accueil : institut-soin-ia.jpg (retouchée par IA, visage reconstruit)
-// ou institut-soin-retouche.jpg (retouche classique fidèle). Originale : brand/sources/photo-institut-originale.jpg
-import photo from '../assets/images/institut-soin-ia.jpg';
+// Photo de l'accueil : retouche classique fidèle (sans IA). Originale : brand/sources/photo-institut-originale.jpg
+import photo from '../assets/images/institut-soin-retouche.jpg';
 import { infos, url, ligne, formatPrix } from '../lib/site';
 
 const soins = (await getCollection('soins')).sort((a, b) => a.data.ordre - b.data.ordre);
