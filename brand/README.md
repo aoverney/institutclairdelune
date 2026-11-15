@@ -4,25 +4,26 @@ Source unique pour le site et les imprimés : **`tokens.json`** (couleurs, polic
 
 ## Univers
 
-Un ciel de nuit fumé, du bleu nuit au prune et au magenta (comme les cartes et sachets cadeaux de l'institut, voir `sources/sachets-cadeaux-cartes.jpg`), une lune lavande et la fée aux ailes bleues. Sur ce fond, des cartouches lavande pâle à fin filet violet.
+Une gamme de **mauves et violets** (choix de Carole : ni bleu ni rose vif). Un ciel de nuit fait de fumées violettes (texture `src/assets/textures/ciel.jpg`), une lune lavande, et sur ce fond des cartouches lavande pâle à fin filet violet, comme sur ses cartes et sachets cadeaux (`sources/sachets-cadeaux-cartes.jpg`).
 
 | Couleur | Hex | Usage |
 | --- | --- | --- |
-| Nuit | `#1c1633` | fonds sombres |
-| Prune | `#431747` | titres, dégradés |
-| Magenta | `#a3246f` | boutons, accents |
-| Lavande | `#e8e0f2` | cartouches, fonds doux |
-| Lavande moyen | `#b8a5d8` | filets |
-| Rose poudré | `#f4dbe7` | petits accents |
-| Bleu aile | `#4f93d6` | très rarement |
+| Nuit | `#1f1830` | fonds sombres |
+| Aubergine | `#3a2550` | titres |
+| Violet | `#5e4380` | boutons, accents |
+| Violet foncé | `#4a3366` | survol, liens |
+| Mauve | `#8a6fa8` | accents doux |
+| Lavande moyen | `#b7a6d0` | filets |
+| Lilas | `#d9cce8` | liens sur fond sombre |
+| Lavande | `#ebe4f3` | cartouches, fonds doux |
 
-Valeurs CMJN indicatives dans `tokens.json`, à faire confirmer par l'imprimeur (épreuve papier recommandée pour le prune et le magenta).
+Valeurs CMJN indicatives dans `tokens.json`, à faire confirmer par l'imprimeur (épreuve papier recommandée pour les violets).
 
 **Polices** (libres, auto-hébergées) : *Cormorant Garamond* pour les titres et le nom, *Jost* pour le texte. Le nom s'écrit **CLAIR DE LUNE** en capitales espacées (0,18 em), avec en dessous *Esthétique et bien-être*.
 
 ## Logo
 
-- Provisoire : `sources/logo-fee-raster.jpg` (image d'origine du site, 1024 px), recadré en rond dans `src/assets/images/logo-fee.jpg`.
+- Provisoire : `sources/logo-fee-raster.jpg` (image d'origine du site, 1024 px), recadré en rond et teinté en mauve (ailes bleues d'origine) dans `src/assets/images/logo-fee.jpg`.
 - Définitif : déposer la fée vectorisée en **`logo/logo.svg`** (carré, fond inclus ou transparent). Elle remplace alors automatiquement le logo sur le site et dans tous les gabarits. Relancer ensuite `npm run brand` (icônes, favicon, og.jpg, imprimés).
 - Toujours sur fond nuit ou dans un rond ; ne pas déformer ; pas d'ombre portée sur fond clair.
 
@@ -41,3 +42,7 @@ Valeurs CMJN indicatives dans `tokens.json`, à faire confirmer par l'imprimeur 
 | `signature-email.html` | | ouvrir, tout copier, coller dans Gmail → Paramètres → Signature |
 
 Pour l'imprimeur : PDF en RVB avec fond perdu, sans traits de coupe. Si l'imprimeur exige du CMJN / PDF/X, convertir avec Ghostscript ou le lui demander (la plupart des imprimeurs en ligne suisses acceptent le RVB).
+
+## Illustrations
+
+Les illustrations des soins et la texture de fond sont générées localement (ComfyUI, Flux 3 Klein distillé, 16 étapes, cfg 1, euler/simple, 1216×912). Prompts et graines dans `sources/illustrations.md`. Seule la photo de l'accueil (`institut-soin.jpg`) est une vraie photo de l'institut. Les anciennes images (Midjourney, 2024) sont dans `archive/wordpress/wp-images/`.

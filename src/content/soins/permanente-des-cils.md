@@ -3,7 +3,7 @@ titre: Rehaussement de cils
 court: Rehaussement de cils
 description: Le rehaussement de cils, une technique durable qui courbe et sublime vos cils naturels pendant 4 à 6 semaines, sans mascara ni faux-cils.
 image: ../../assets/images/rehaussement-cils.jpg
-imageAlt: Regard avant et après un rehaussement de cils
+imageAlt: Œil fermé aux cils longs et recourbés après un rehaussement
 tarifs: [rehaussement-simple, rehaussement-teinture]
 ordre: 1
 ---

@@ -22,14 +22,16 @@ const SITE = 'https://www.institutclairdelune.ch/';
 
 const svgLogo = join(root, 'brand/logo/logo.svg');
 const logo = pathToFileURL(existsSync(svgLogo) ? svgLogo : join(root, 'src/assets/images/logo-fee.jpg')).href;
-const qr = await QRCode.toString(SITE, { type: 'svg', margin: 0, errorCorrectionLevel: 'M', color: { dark: tokens.color.prune.hex, light: '#0000' } });
+const texture = join(root, 'src/assets/textures/ciel.jpg');
+const cielVar = existsSync(texture) ? `--ciel-img:url(${pathToFileURL(texture).href});` : '';
+const qr = await QRCode.toString(SITE, { type: 'svg', margin: 0, errorCorrectionLevel: 'M', color: { dark: tokens.color.aubergine.hex, light: '#0000' } });
 
 const font = (pkg, file) => pathToFileURL(join(root, 'node_modules/@fontsource-variable', pkg, 'files', file)).href;
 const kebab = (s) => s.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase());
 const head = `<!doctype html><meta charset="utf-8"><style>
 @font-face{font-family:'Cormorant Garamond Variable';src:url(${font('cormorant-garamond', 'cormorant-garamond-latin-wght-normal.woff2')}) format('woff2');font-weight:300 700}
 @font-face{font-family:'Jost Variable';src:url(${font('jost', 'jost-latin-wght-normal.woff2')}) format('woff2');font-weight:100 900}
-:root{${Object.entries(tokens.color).map(([k, v]) => `--c-${kebab(k)}:${v.hex}`).join(';')};${Object.entries(tokens.font).map(([k, v]) => `--f-${k}:'${v.family}',${v.fallback}`).join(';')}}
+:root{${cielVar}${Object.entries(tokens.color).map(([k, v]) => `--c-${kebab(k)}:${v.hex}`).join(';')};${Object.entries(tokens.font).map(([k, v]) => `--f-${k}:'${v.family}',${v.fallback}`).join(';')}}
 </style><link rel="stylesheet" href="${pathToFileURL(join(T, '_base.css')).href}">`;
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');

@@ -3,7 +3,7 @@ titre: Reiki
 court: Reiki
 description: Le Reiki, pratique japonaise de soin énergétique, invite à la relaxation profonde et au bien-être du corps et de l'esprit. Séances à Broc.
 image: ../../assets/images/reiki.jpg
-imageAlt: Séance de Reiki entourée de bougies
+imageAlt: Mains de la praticienne posées au-dessus d'une personne détendue pendant une séance de Reiki
 tarifs: [reiki]
 ordre: 3
 ---

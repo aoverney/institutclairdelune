@@ -2,6 +2,7 @@
 import '@fontsource-variable/cormorant-garamond/wght.css';
 import '@fontsource-variable/jost/wght.css';
 import '../styles/global.css';
+import { getImage } from 'astro:assets';
 import Tokens from '../components/Tokens.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -15,6 +16,12 @@ interface Props {
   fil?: { nom: string; path: string }[]; // fil d'Ariane
 }
 const { titre, description, image, jsonLd = [], fil } = Astro.props;
+// Texture du fond « ciel » (si présente) : 2 tailles, mobile et grand écran
+const tex = Object.values(import.meta.glob<{ default: ImageMetadata }>('../assets/textures/ciel.jpg', { eager: true }))[0]?.default;
+const cielCss = tex
+  ? await Promise.all([960, 1920].map((w) => getImage({ src: tex, width: w, format: 'webp', quality: 72 })))
+      .then(([s, l]) => `:root{--ciel-img:url(${s.src})}@media (min-width:900px){:root{--ciel-img:url(${l.src})}}`)
+  : '';
 const pageTitle = titre === infos.nom ? `${infos.nom} · Institut de beauté à Broc, Gruyère` : `${titre} · ${infos.nom}, Broc`;
 const canonical = absUrl(Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/');
 const ogImage = image ?? absUrl('/og.jpg');
@@ -38,7 +45,7 @@ if (fil) {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {SITE_ENV !== 'prd' && <meta name="robots" content="noindex, nofollow" />}
-    <meta name="theme-color" content="#1c1633" />
+    <meta name="theme-color" content="#1f1830" />
     <link rel="icon" href={url('/favicon.ico')} sizes="32x32" />
     <link rel="apple-touch-icon" href={url('/icons/apple-touch-icon.png')} />
     <link rel="manifest" href={url('/site.webmanifest')} />
@@ -55,6 +62,7 @@ if (fil) {
     <meta name="twitter:card" content="summary_large_image" />
     <script is:inline>document.documentElement.classList.add("js")</script>
     <Tokens />
+    {cielCss && <style is:inline set:html={cielCss} />}
     {ld.map((o) => <script type="application/ld+json" set:html={JSON.stringify(o)} />)}
   </head>
   <body>

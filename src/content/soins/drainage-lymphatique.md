@@ -3,7 +3,7 @@ titre: Drainage lymphatique
 court: Drainage lymphatique
 description: "Le drainage lymphatique, un massage doux qui stimule la circulation de la lymphe : jambes légères, peau éclatante et silhouette affinée."
 image: ../../assets/images/drainage-lymphatique.jpg
-imageAlt: Ambiance chaleureuse avec bougie, plaid et agrumes séchés
+imageAlt: Massage doux du mollet pendant un drainage lymphatique
 tarifs: [drainage-lymphatique]
 ordre: 4
 ---

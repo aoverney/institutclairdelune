@@ -14,7 +14,8 @@ Les demandes de modification arrivent d'Arnaud (son fils), souvent comme transcr
 | Ajouter une page de soin | nouveau `src/content/soins/<adresse>.md` + image dans `src/assets/images/` (le menu et l'accueil suivent tout seuls) |
 | Texte de l'accueil, du catalogue, du contact | `src/pages/index.astro`, `catalogue-soins.astro`, `contactez-moi.astro` |
 | Marques de produits | `src/data/produits.yaml` + logo dans `src/assets/produits/` |
-| Couleurs, polices | `brand/tokens.json` (site **et** imprimés) |
+| Couleurs, polices | `brand/tokens.json` (site **et** imprimés), gamme mauve/violet uniquement : pas de bleu ni de rose vif |
+| Illustrations | `src/assets/images/` ; nouvelles images générées avec ComfyUI (vérifier `gpu-mode status`, file partagée), prompts dans `brand/sources/illustrations.md` |
 | Logo | `brand/logo/logo.svg` (s'il existe, il remplace partout `src/assets/images/logo-fee.jpg`) |
 | Imprimés et visuels | `brand/templates/*.html`, puis `npm run brand` |
 

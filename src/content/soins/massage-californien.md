@@ -3,7 +3,7 @@ titre: Massage californien
 court: Massage californien
 description: Le massage californien, à l'huile chaude, détend le corps et l'esprit par des mouvements fluides et enveloppants. Idéal pour se ressourcer.
 image: ../../assets/images/massage-californien.jpg
-imageAlt: Bougies, huile de massage et serviettes dans une ambiance chaleureuse
+imageAlt: Flacon d'huile de massage, bougie, galets et serviette lavande
 tarifs: [massage-californien]
 ordre: 2
 ---
