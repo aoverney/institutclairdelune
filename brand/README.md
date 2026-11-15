@@ -45,4 +45,4 @@ Pour l'imprimeur : PDF en RVB avec fond perdu, sans traits de coupe. Si l'imprim
 
 ## Illustrations
 
-Les illustrations des soins et la texture de fond sont générées localement (ComfyUI, Flux 3 Klein distillé, 16 étapes, cfg 1, euler/simple, 1216×912). Prompts et graines dans `sources/illustrations.md`. Seule la photo de l'accueil (`institut-soin.jpg`) est une vraie photo de l'institut. Les anciennes images (Midjourney, 2024) sont dans `archive/wordpress/wp-images/`.
+Les illustrations des soins et la texture de fond sont générées localement (ComfyUI, Flux 3 Klein distillé, 16 étapes, cfg 1, euler/simple, 1216×912). Prompts et graines dans `sources/illustrations.md`. La photo de l'accueil est une vraie photo de l'institut (originale : `sources/photo-institut-originale.jpg`, filtre vintage vert d'époque). Deux retouches : `institut-soin-retouche.jpg` (étalonnage classique, fidèle) et `institut-soin-ia.jpg` (restauration Flux 3 Klein par référence, graine 33, plus nette mais visage reconstruit : à faire valider par Carole). Le choix se fait dans `src/pages/index.astro`. Les anciennes images (Midjourney, 2024) sont dans `archive/wordpress/wp-images/`.
