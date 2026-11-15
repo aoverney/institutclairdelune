@@ -1,0 +1,99 @@
+# Catalogue des soins et tarifs (CHF).
+# prix : un nombre (130) ou une fourchette [5, 15] → « de 5.- à 15.- ».
+# id : identifiant stable, utilisé par les pages de soins (champ « tarifs »).
+# lien : adresse d'une page de soin, si elle existe.
+sections:
+  - titre: Soins du visage
+    groupes:
+      - lignes:
+          - id: visage-emeo
+            nom: EMEO
+            detail: compris épilation des sourcils
+            prix: 130
+          - id: visage-classic
+            nom: CLASSIC
+            detail: compris épilation des sourcils
+            prix: 120
+          - id: visage-sup-epilation
+            nom: + épilation lèvre, menton, visage
+            prix: [5, 15]
+          - id: visage-sup-maquillage
+            nom: + maquillage
+            prix: 5
+          - id: visage-sup-ampoule
+            nom: + ampoule
+            prix: 5
+          - id: visage-sup-masque
+            nom: + masque spécifique
+            prix: 10
+
+  - titre: Soins du corps
+    groupes:
+      - titre: Épilations
+        lignes:
+          - id: epil-visage
+            nom: Lèvre, sourcils, menton, visage
+            prix: [20, 50]
+          - id: epil-demi-jambes
+            nom: 1/2 jambes
+            prix: 44
+          - id: epil-aisselles
+            nom: Aisselles
+            prix: 22
+          - id: epil-bikini
+            nom: Bikini
+            prix: [22, 55]
+            remarque: intégral
+          - id: epil-jambes
+            nom: Jambes complètes
+            prix: 75
+          - id: forfait-demi-jambes
+            nom: Forfait 1/2 jambes, bikini, aisselles
+            prix: 80
+          - id: forfait-jambes
+            nom: Forfait jambes complètes, bikini, aisselles
+            prix: 110
+      - titre: Autres soins
+        lignes:
+          - id: drainage-lymphatique
+            nom: Drainage lymphatique
+            prix: 110
+            lien: /drainage-lymphatique/
+          - id: massage-californien
+            nom: Massage californien
+            detail: huile chaude
+            prix: 130
+            lien: /massage-californien/
+          - id: reiki
+            nom: Reiki
+            prix: 110
+            lien: /reiki/
+          - id: soin-mains
+            nom: Soin des mains
+            prix: 24
+
+  - titre: Beauté du regard
+    groupes:
+      - titre: Teintures
+        lignes:
+          - id: teinture-cils
+            nom: Cils
+            prix: 40
+          - id: teinture-sourcils
+            nom: Sourcils
+            prix: 35
+          - id: teinture-cils-sourcils
+            nom: Cils et sourcils
+            detail: y compris l'épilation des sourcils
+            prix: 60
+        note: Profitez d'une réduction de 10.- sur chaque teinture pendant un soin du visage.
+      - titre: Rehaussement de cils
+        lignes:
+          - id: rehaussement-simple
+            nom: Rehaussement de cils simple
+            prix: 90
+            lien: /permanente-des-cils/
+          - id: rehaussement-teinture
+            nom: Avec teinture des cils supérieurs
+            prix: 110
+            lien: /permanente-des-cils/

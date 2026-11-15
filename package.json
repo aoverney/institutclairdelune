@@ -1,0 +1,27 @@
+{
+  "name": "institutclairdelune",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && node tools/check.mjs",
+    "build:qua": "SITE_ENV=qua npm run build",
+    "build:prd": "SITE_ENV=prd npm run build",
+    "preview": "astro preview",
+    "deploy:prd": "bash tools/deploy-prd.sh",
+    "brand": "node tools/brand.mjs",
+    "lighthouse": "bash tools/lighthouse.sh"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.5",
+    "@fontsource-variable/cormorant-garamond": "^5.3.0",
+    "@fontsource-variable/jost": "^5.3.0",
+    "astro": "^7.4.12",
+    "sharp": "^0.35.5",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.17.0",
+    "qrcode": "^1.5.4"
+  }
+}

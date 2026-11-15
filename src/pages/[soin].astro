@@ -1,0 +1,51 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Lignes from '../components/Lignes.astro';
+import AppelRdv from '../components/AppelRdv.astro';
+import { ligne, offre, absUrl, url } from '../lib/site';
+
+export async function getStaticPaths() {
+  const soins = await getCollection('soins');
+  return soins.map((s) => ({ params: { soin: s.id }, props: { s } }));
+}
+const { s } = Astro.props;
+const { Content } = await render(s);
+const lignes = s.data.tarifs.map(ligne);
+const path = `/${s.id}/`;
+const jsonLd = [{
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: s.data.titre,
+  description: s.data.description,
+  url: absUrl(path),
+  serviceType: s.data.titre,
+  areaServed: 'Gruyère',
+  provider: { '@id': absUrl('/') + '#institut' },
+  offers: lignes.map(offre),
+}];
+---
+<Base titre={s.data.titre} description={s.data.description} jsonLd={jsonLd} fil={[{ nom: 'Soins & tarifs', path: '/catalogue-soins/' }, { nom: s.data.titre, path }]}>
+  <section class="section" style="padding-top:2rem">
+    <div class="conteneur soin">
+      <Image src={s.data.image} widths={[480, 800, 1100]} sizes="(min-width: 860px) 30rem, 100vw" alt={s.data.imageAlt} class="soin__img" loading="eager" fetchpriority="high" />
+      <div>
+        <p class="surtitre">Soin original</p>
+        <h1>{s.data.titre}</h1>
+        <div class="prose"><Content /></div>
+        {lignes.length > 0 && (
+          <div class="encadre-prix">
+            <h2>Tarif</h2>
+            <Lignes lignes={lignes} liens={false} />
+          </div>
+        )}
+        <div class="boutons" style="margin-top:1.5rem">
+          <a class="bouton" href={url('/contactez-moi/')}>Prendre rendez-vous</a>
+          <a class="bouton bouton--clair" href={url('/catalogue-soins/')}>Tous les tarifs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <AppelRdv />
+</Base>

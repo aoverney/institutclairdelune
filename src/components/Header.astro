@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import Logo from './Logo.astro';
+import { url, infos } from '../lib/site';
+
+const soins = (await getCollection('soins')).sort((a, b) => a.data.ordre - b.data.ordre);
+const here = Astro.url.pathname;
+const actif = (p: string) => (here === url(p) ? 'page' : undefined);
+const dansSoins = soins.some((s) => here === url(`/${s.id}/`));
+---
+<header class="entete">
+  <div class="entete__in">
+    <a href={url('/')} class="marque">
+      <Logo size={56} eager />
+      <span class="marque__txt">
+        <span class="marque__nom">Clair de Lune</span>
+        <span class="marque__accroche">{infos.accroche}</span>
+      </span>
+    </a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-principale" hidden>
+      <span class="burger" aria-hidden="true"></span>Menu
+    </button>
+    <nav id="nav-principale" class="menu" aria-label="Navigation principale">
+      <ul>
+        <li><a href={url('/')} aria-current={actif('/')}>Accueil</a></li>
+        <li><a href={url('/catalogue-soins/')} aria-current={actif('/catalogue-soins/')}>Soins &amp; tarifs</a></li>
+        <li class="menu__groupe">
+          <button type="button" class:list={['menu__titre', { 'est-actif': dansSoins }]} aria-expanded="false">Soins originaux</button>
+          <ul>
+            {soins.map((s) => <li><a href={url(`/${s.id}/`)} aria-current={actif(`/${s.id}/`)}>{s.data.court}</a></li>)}
+          </ul>
+        </li>
+        <li><a href={url('/produits-beaute/')} aria-current={actif('/produits-beaute/')}>Produits</a></li>
+        <li><a href={url('/contactez-moi/')} class="bouton bouton--petit" aria-current={actif('/contactez-moi/')}>Rendez-vous</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<script>
+  // Menu mobile : sans JS, la navigation reste simplement affichée en entier.
+  document.documentElement.classList.add('js');
+  const btn = document.querySelector<HTMLButtonElement>('.menu-btn')!;
+  const nav = document.getElementById('nav-principale')!;
+  btn.hidden = false;
+  btn.addEventListener('click', () => {
+    const o = btn.getAttribute('aria-expanded') !== 'true';
+    btn.setAttribute('aria-expanded', String(o));
+    nav.classList.toggle('ouvert', o);
+  });
+  for (const b of document.querySelectorAll<HTMLButtonElement>('.menu__titre')) {
+    b.addEventListener('click', () => b.setAttribute('aria-expanded', String(b.getAttribute('aria-expanded') !== 'true')));
+  }
+</script>

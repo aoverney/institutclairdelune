@@ -1,0 +1,19 @@
+<!-- @format 1200px 630px  @sortie jpg  @copie public/og.jpg
+     Image affichée quand on partage le site (Facebook, WhatsApp…). -->
+<style>
+  .page { width: 1200px; height: 630px; display: grid; grid-template-columns: 420px 1fr; align-items: center; gap: 70px; padding: 0 90px; }
+  .logo { width: 400px; height: 400px; box-shadow: 0 0 120px rgb(184 165 216 / .3); }
+  .surtitre { color: var(--c-rose); font-size: 20px; margin-bottom: 22px; }
+  .nom { font-size: 64px; color: #fff; line-height: 1.1; }
+  .accroche { font-size: 28px; margin-top: 18px; color: var(--c-lavande); }
+  .lieu { font-size: 24px; margin-top: 30px; color: var(--c-lavande-moyen); }
+</style>
+<div class="page ciel">
+  <img class="logo" src="{{logo}}" alt="">
+  <div>
+    <div class="surtitre">Institut de beauté</div>
+    <div class="nom">Clair<br>de Lune</div>
+    <div class="accroche">{{infos.accroche}}</div>
+    <div class="lieu">Broc · Gruyère</div>
+  </div>
+</div>

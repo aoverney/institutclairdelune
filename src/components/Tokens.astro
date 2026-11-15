@@ -1,0 +1,10 @@
+---
+// Variables CSS générées depuis brand/tokens.json (charte commune site + imprimés).
+import tokens from '../../brand/tokens.json';
+const kebab = (s: string) => s.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase());
+const vars = [
+  ...Object.entries(tokens.color).map(([k, v]) => `--c-${kebab(k)}:${v.hex}`),
+  ...Object.entries(tokens.font).map(([k, v]) => `--f-${k}:'${v.family}',${v.fallback}`),
+].join(';');
+---
+<style is:inline set:html={`:root{${vars}}`}></style>

@@ -1,0 +1,42 @@
+<!-- @format 154mm 111mm (A6 paysage 148×105 mm + 3 mm de fond perdu)  @sortie pdf -->
+<style>
+  @page { size: 154mm 111mm; margin: 0; }
+  .page { width: 154mm; height: 111mm; }
+  .recto { display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 12mm 14mm; gap: 8mm; }
+  .recto .logo { width: 52mm; height: 52mm; justify-self: center; box-shadow: 0 0 12mm rgb(184 165 216 / .35); }
+  .recto .surtitre { color: var(--c-rose); font-size: 7.5pt; margin-bottom: 3mm; }
+  .recto .grand { font-family: var(--f-titre); font-size: 34pt; line-height: 1; color: #fff; font-weight: 500; }
+  .recto .nom { font-size: 11pt; margin-top: 5mm; color: var(--c-lavande); }
+  .recto .accroche { font-size: 8pt; color: var(--c-lavande-moyen); margin-top: 1mm; }
+  .verso { padding: 11mm 14mm; }
+  .verso .titre { font-size: 20pt; margin-bottom: 5mm; }
+  .champ { display: flex; gap: 3mm; align-items: flex-end; height: 10mm; border-bottom: .25mm solid var(--c-lavande-moyen); font-size: 8.5pt; color: var(--c-encre-douce); padding-bottom: 1mm; }
+  .champ span { white-space: nowrap; }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8mm; }
+  .verso .pied { position: absolute; left: 14mm; right: 14mm; bottom: 9mm; display: flex; justify-content: space-between; align-items: flex-end; font-size: 7.5pt; color: var(--c-encre-douce); }
+  .verso .pied strong { color: var(--c-prune); font-weight: 500; }
+  .verso .qr { width: 16mm; height: 16mm; }
+</style>
+<div class="page ciel recto">
+  <img class="logo" src="{{logo}}" alt="">
+  <div>
+    <div class="surtitre">Pour un moment rien qu'à vous</div>
+    <div class="grand">Bon<br>cadeau</div>
+    <div class="nom">Clair de Lune</div>
+    <div class="accroche">{{infos.accroche}} · Broc</div>
+  </div>
+</div>
+<div class="page papier verso">
+  <div class="titre">Bon cadeau</div>
+  <div class="champ"><span>Offert à</span></div>
+  <div class="champ"><span>De la part de</span></div>
+  <div class="champ"><span>Pour (soin ou montant)</span></div>
+  <div class="duo">
+    <div class="champ"><span>Valable jusqu'au</span></div>
+    <div class="champ"><span>N°</span></div>
+  </div>
+  <div class="pied">
+    <div>Sur rendez-vous : <strong>{{infos.telephone}}</strong><br>{{infos.adresse.rue}}, {{infos.adresse.npa}} {{infos.adresse.localite}} · institutclairdelune.ch</div>
+    <div class="qr">{{qr}}</div>
+  </div>
+</div>

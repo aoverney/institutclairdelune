@@ -1,0 +1,14 @@
+---
+// Logo de l'institut. Dès que brand/logo/logo.svg existe (fée vectorisée),
+// il remplace automatiquement l'image provisoire, sans rien toucher d'autre.
+import { Image } from 'astro:assets';
+import raster from '../assets/images/logo-fee.jpg';
+
+interface Props { size?: number; class?: string; eager?: boolean }
+const { size = 64, class: cls = '', eager = false } = Astro.props;
+const svgs = import.meta.glob('/brand/logo/logo.svg', { eager: true, query: '?url', import: 'default' });
+const svg = Object.values(svgs)[0] as string | undefined;
+---
+{svg
+  ? <img src={svg} width={size} height={size} alt="" class={`logo ${cls}`} loading={eager ? 'eager' : 'lazy'} />
+  : <Image src={raster} width={size} height={size} widths={[size, size * 2]} sizes={`${size}px`} alt="" class={`logo logo--raster ${cls}`} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} />}

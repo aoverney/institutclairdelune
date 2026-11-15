@@ -1,0 +1,28 @@
+---
+import Logo from './Logo.astro';
+import Email from './Email.astro';
+import { infos, url } from '../lib/site';
+const a = infos.adresse;
+---
+<footer class="pied ciel">
+  <div class="pied__in">
+    <div class="pied__marque">
+      <Logo size={88} />
+      <p class="marque__nom">Clair de Lune</p>
+      <p class="pied__slogan">{infos.slogan}</p>
+    </div>
+    <div>
+      <h2 class="pied__titre">L'institut</h2>
+      <p>{infos.raisonSociale}<br />{infos.praticienne}, {infos.titre}</p>
+      <p>{a.rue}<br />{a.npa} {a.localite}</p>
+      <p>{infos.horaires}</p>
+    </div>
+    <div>
+      <h2 class="pied__titre">Contact</h2>
+      <p><a href={`tel:${infos.telephoneInternational}`}>{infos.telephone}</a><br /><Email /></p>
+      <p><a href={infos.facebook} rel="noopener">Facebook</a> · <a href={`https://wa.me/${infos.whatsapp}`} rel="noopener">WhatsApp</a></p>
+      <p><a href={url('/contactez-moi/')}>Prendre rendez-vous</a></p>
+    </div>
+  </div>
+  <p class="pied__bas">© {new Date().getFullYear()} {infos.raisonSociale} · Broc, Gruyère</p>
+</footer>

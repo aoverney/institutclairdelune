@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import Lignes from '../components/Lignes.astro';
+import AppelRdv from '../components/AppelRdv.astro';
+import { tarifs } from '../lib/site';
+---
+<Base titre="Soins & tarifs" description="Soins du visage, épilations, massages, Reiki, drainage lymphatique et beauté du regard : tous les soins et tarifs de l'Institut Clair de Lune à Broc." fil={[{ nom: 'Soins & tarifs', path: '/catalogue-soins/' }]}>
+  <div class="conteneur page-titre">
+    <h1>Soins &amp; tarifs</h1>
+    <p>Que vous souhaitiez un soin du visage revitalisant, une épilation en douceur, un massage relaxant ou un regard impeccable, je suis là pour vous. Explorez mes soins et laissez-vous choyer.</p>
+  </div>
+  <section class="section" style="padding-top:1rem">
+    <div class="conteneur tarifs">
+      {tarifs.sections.map((s) => (
+        <section class="tarif-section">
+          <h2>{s.titre}</h2>
+          {s.groupes.map((g) => (
+            <>
+              {g.titre && <h3>{g.titre}</h3>}
+              <Lignes lignes={g.lignes} />
+              {g.note && <p class="tarif-note">{g.note}</p>}
+            </>
+          ))}
+        </section>
+      ))}
+    </div>
+    <p class="conteneur" style="margin-top:1.5rem;color:var(--c-encre-douce);font-size:.92rem">Prix en francs suisses (CHF).</p>
+  </section>
+  <AppelRdv />
+</Base>

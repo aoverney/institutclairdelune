@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/site';
+---
+<Base titre="Page introuvable" description="Cette page n'existe pas ou plus sur le site de l'Institut Clair de Lune.">
+  <div class="etroit page-titre section" style="text-align:center">
+    <h1>Page introuvable</h1>
+    <p style="margin-inline:auto">Cette page n'existe pas ou a été déplacée.</p>
+    <div class="boutons" style="justify-content:center">
+      <a class="bouton" href={url('/')}>Retour à l'accueil</a>
+      <a class="bouton bouton--clair" href={url('/catalogue-soins/')}>Soins &amp; tarifs</a>
+    </div>
+  </div>
+</Base>

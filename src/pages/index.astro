@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Logo from '../components/Logo.astro';
+import AppelRdv from '../components/AppelRdv.astro';
+import photo from '../assets/images/institut-soin.jpg';
+import { infos, url, ligne, formatPrix } from '../lib/site';
+
+const soins = (await getCollection('soins')).sort((a, b) => a.data.ordre - b.data.ordre);
+---
+<Base titre={infos.nom} description="Institut de beauté à Broc en Gruyère : soins du visage, épilations, rehaussement de cils, massage californien, Reiki et drainage lymphatique.">
+  <section class="hero ciel">
+    <div class="conteneur hero__in">
+      <Logo size={340} class="hero__logo" eager />
+      <div>
+        <p class="surtitre">Institut de beauté · Broc, Gruyère</p>
+        <h1>Prenez soin de votre corps et de votre esprit</h1>
+        <p class="hero__lead">Soins du visage, du corps et du regard, massages et Reiki, dans un lieu cosy et harmonieux, aménagé pour vous.</p>
+        <div class="boutons">
+          <a class="bouton" href={url('/catalogue-soins/')}>Soins &amp; tarifs</a>
+          <a class="bouton bouton--clair" href={url('/contactez-moi/')}>Prendre rendez-vous</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur intro">
+      <Image src={photo} widths={[480, 800, 1200]} sizes="(min-width: 860px) 34rem, 100vw" alt={`${infos.praticienne} pendant un soin à l'institut`} class="intro__img" />
+      <div>
+        <p class="surtitre">Bienvenue</p>
+        <h2>Un moment unique, à chaque visite</h2>
+        <p>Dans une nouvelle atmosphère, cosy et harmonieuse, aménagée pour vous, venez prendre soin de votre corps et de votre esprit, et vous offrir de précieux instants de détente.</p>
+        <p>Vous trouverez toujours cette subtile alchimie d'expertise et d'attention que j'ai développée au cours des années, vous garantissant à chaque visite un moment unique.</p>
+        <p><strong>{infos.praticienne}</strong>, {infos.titre}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fond-lavande">
+    <div class="conteneur">
+      <p class="surtitre">Soins originaux</p>
+      <h2>Découvrez mes soins</h2>
+      <div class="cartes">
+        {soins.map((s) => (
+          <a class="carte" href={url(`/${s.id}/`)}>
+            <Image src={s.data.image} widths={[400, 640]} sizes="(min-width: 1100px) 16rem, (min-width: 600px) 45vw, 100vw" alt="" />
+            <div class="carte__corps">
+              <h3>{s.data.court}</h3>
+              {s.data.tarifs[0] && <p class="carte__prix">dès {formatPrix(ligne(s.data.tarifs[0]).prix)}</p>}
+            </div>
+          </a>
+        ))}
+      </div>
+      <p style="margin-top:2rem">Et aussi : soins du visage, épilations, teintures et soin des mains. <a href={url('/catalogue-soins/')}>Voir tous les soins et tarifs</a>.</p>
+    </div>
+  </section>
+
+  <AppelRdv />
+</Base>

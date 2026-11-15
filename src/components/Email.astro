@@ -1,0 +1,21 @@
+---
+// Adresse email protégée des robots : elle n'est jamais écrite en clair dans le HTML.
+// Elle est reconstituée par un petit script au chargement de la page.
+import { infos } from '../lib/site';
+interface Props { class?: string; label?: string }
+const { class: cls = '', label } = Astro.props;
+const [u, d] = infos.email.split('@');
+const enc = (s: string) => [...s].reverse().join('');
+---
+<a class={`js-email ${cls}`} data-u={enc(u)} data-d={enc(d)} data-label={label ?? ''} href="#contact-email">
+  <span class="js-email__txt">Email</span>
+</a>
+<script>
+  for (const a of document.querySelectorAll<HTMLAnchorElement>('a.js-email')) {
+    const r = (s = '') => [...s].reverse().join('');
+    const m = `${r(a.dataset.u)}@${r(a.dataset.d)}`;
+    a.href = 'mailto:' + m;
+    const t = a.querySelector('.js-email__txt');
+    if (t) t.textContent = a.dataset.label || m;
+  }
+</script>

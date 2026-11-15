@@ -1,0 +1,59 @@
+# Institut Clair de Lune : site statique (Apache chez Infomaniak, sans PHP)
+# Ce fichier n'a d'effet qu'en prd ; GitHub Pages (qua) l'ignore.
+
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1. Une seule adresse : https://www.institutclairdelune.ch
+  #    (Infomaniak est derrière un proxy : on teste aussi X-Forwarded-Proto pour éviter les boucles)
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://www.institutclairdelune.ch%{REQUEST_URI} [L,R=301]
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteRule ^ https://www.institutclairdelune.ch%{REQUEST_URI} [L,R=301]
+
+  # 2. Anciennes adresses WordPress
+  RewriteCond %{QUERY_STRING} (^|&)(p|page_id)=\d+ [NC]
+  RewriteRule ^$ /? [L,R=301]
+  RewriteRule ^(feed|comments/feed|category|author|tag|accueil)(/.*)?$ / [L,R=301]
+  RewriteRule ^(wp-admin|wp-login\.php|wp-content|wp-includes|xmlrpc\.php|wp-json)(/.*)?$ - [G,L]
+
+  # 3. Adresse sans / final → avec / (ex. /reiki → /reiki/)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME}/index.html -f
+  RewriteRule ^(.*[^/])$ /$1/ [L,R=301]
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json application/xml application/manifest+json image/svg+xml
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+  Header always set Strict-Transport-Security "max-age=15552000"
+
+  # Fichiers versionnés par Astro (nom contenant une empreinte) : cache 1 an
+  <If "%{REQUEST_URI} =~ m#^/_astro/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+  # Pages HTML : toujours revalidées (une mise à jour se voit tout de suite)
+  <FilesMatch "\.(html|xml|txt|webmanifest)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  # Autres images et icônes : 1 semaine
+  <FilesMatch "\.(png|jpg|jpeg|webp|avif|svg|ico|woff2)$">
+    Header append Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+  AddCharset utf-8 .html .css .js .xml .txt .webmanifest
+</IfModule>

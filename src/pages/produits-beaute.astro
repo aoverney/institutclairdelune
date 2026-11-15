@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import AppelRdv from '../components/AppelRdv.astro';
+import { produits } from '../lib/site';
+
+const logos = import.meta.glob<{ default: ImageMetadata }>('../assets/produits/*', { eager: true });
+const logo = (f: string) => logos[`../assets/produits/${f}`].default;
+---
+<Base titre="Produits de beauté" description="Les produits de beauté utilisés pendant les soins et vendus à l'Institut Clair de Lune : marques suisses, bio et naturelles." fil={[{ nom: 'Produits', path: '/produits-beaute/' }]}>
+  <div class="conteneur page-titre">
+    <h1>Produits utilisés et vendus</h1>
+    <p>Découvrez les produits utilisés lors des soins, que vous pouvez aussi acquérir à l'institut. Profitez de votre soin pour compléter votre trousse de beauté.</p>
+  </div>
+  <section class="section" style="padding-top:1rem">
+    <div class="conteneur produits">
+      {produits.map((p) => (
+        <div class="produit">
+          <Image src={logo(p.logo)} height={90} alt={`Logo ${p.nom}`} />
+          <h2 style="font-size:1.5rem">{p.nom}</h2>
+          <p>{p.texte}</p>
+          {p.lien && <a href={p.lien} rel="noopener">En savoir plus<span class="evitement"> sur {p.nom}</span></a>}
+        </div>
+      ))}
+    </div>
+  </section>
+  <AppelRdv />
+</Base>

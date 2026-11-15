@@ -1,0 +1,17 @@
+---
+import { formatPrix, url, type Ligne } from '../lib/site';
+interface Props { lignes: Ligne[]; liens?: boolean }
+const { lignes, liens = true } = Astro.props;
+---
+<ul class="lignes">
+  {lignes.map((l) => (
+    <li>
+      <span class="lignes__nom">
+        {liens && l.lien ? <a href={url(l.lien)}>{l.nom}</a> : l.nom}
+        {l.detail && <small>{l.detail}</small>}
+      </span>
+      <span class="lignes__pts" aria-hidden="true"></span>
+      <span class="lignes__prix">{formatPrix(l.prix)}{l.remarque && ` (${l.remarque})`}</span>
+    </li>
+  ))}
+</ul>

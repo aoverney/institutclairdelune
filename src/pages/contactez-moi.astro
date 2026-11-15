@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import Contacts from '../components/Contacts.astro';
+import { infos, url } from '../lib/site';
+---
+<Base titre="Contact et rendez-vous" description="Prenez rendez-vous à l'Institut Clair de Lune à Broc : par téléphone, WhatsApp ou email. Rue de Montsalvens 8, 1636 Broc." fil={[{ nom: 'Contact', path: '/contactez-moi/' }]}>
+  <div class="conteneur page-titre">
+    <h1>Contactez-moi</h1>
+    <p>Je suis à votre écoute. Que vous ayez des questions sur mes soins, des demandes particulières ou simplement envie de prendre rendez-vous, je suis là pour vous.</p>
+  </div>
+  <section class="section" style="padding-top:0">
+    <div class="conteneur">
+      <Contacts />
+      <p>Les soins se font <strong>sur rendez-vous</strong>, à l'institut, {infos.adresse.rue} à {infos.adresse.localite}. <a href={url('/catalogue-soins/')}>Découvrez mes soins et tarifs</a>.</p>
+    </div>
+  </section>
+</Base>

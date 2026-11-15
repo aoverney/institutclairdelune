@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+brand/.build/
+.env
+*.log
+# données d'analytics : jamais dans le dépôt public
+analytics/

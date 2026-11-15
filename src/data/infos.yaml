@@ -1,0 +1,21 @@
+# Coordonnées de l'institut : une seule source pour tout le site
+# (en-tête, pied de page, contact, données pour Google).
+nom: Institut Clair de Lune
+raisonSociale: Institut Clair de Lune Sàrl
+accroche: Esthétique et bien-être
+slogan: Votre institut de beauté en Gruyère. Soins du visage, du corps et de l'esprit.
+praticienne: Carole Overney-Bosson
+titre: Esthéticienne CFC
+adresse:
+  rue: Rue de Montsalvens 8
+  npa: "1636"
+  localite: Broc
+  region: Gruyère
+  canton: FR
+  pays: CH
+telephone: "079 380 79 33"
+telephoneInternational: "+41793807933"
+whatsapp: "41793807933"
+email: caroverney@gmail.com
+facebook: https://www.facebook.com/profile.php?id=100063480914869
+horaires: Sur rendez-vous

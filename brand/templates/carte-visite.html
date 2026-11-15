@@ -1,0 +1,38 @@
+<!--
+  @format 91mm 61mm (85×55 mm + 3 mm de fond perdu)  @sortie pdf
+  Zone de sécurité : rien d'important à moins de 6 mm du bord du fichier.
+-->
+<style>
+  @page { size: 91mm 61mm; margin: 0; }
+  .page { width: 91mm; height: 61mm; }
+  .recto { display: grid; place-items: center; }
+  .recto .cartouche { width: 62mm; padding: 4mm 3mm 3.5mm; outline-offset: 1.2mm; }
+  .recto .logo { width: 17mm; height: 17mm; margin: 0 auto 2mm; }
+  .recto .nom { font-size: 13pt; color: var(--c-prune); }
+  .recto .accroche { font-size: 7.5pt; margin-top: .8mm; color: var(--c-encre-douce); }
+  .verso { padding: 9mm 9mm 9mm 10mm; display: grid; grid-template-columns: 1fr 17mm; gap: 4mm; align-items: center; }
+  .verso .titre { font-size: 14pt; line-height: 1.05; }
+  .verso .fn { font-size: 7pt; color: var(--c-magenta-fonce); letter-spacing: .06em; margin: .8mm 0 3mm; text-transform: uppercase; }
+  .verso p { font-size: 7.6pt; line-height: 1.5; }
+  .verso .site { color: var(--c-prune); font-weight: 500; margin-top: 1.5mm; }
+  .verso .qr { width: 17mm; height: 17mm; }
+  .verso::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6mm; background: var(--c-prune); }
+</style>
+<div class="page ciel recto">
+  <div class="cartouche">
+    <img class="logo" src="{{logo}}" alt="">
+    <div class="nom">Clair de Lune</div>
+    <div class="accroche">{{infos.accroche}}</div>
+  </div>
+</div>
+<div class="page papier verso">
+  <div>
+    <div class="titre">{{infos.praticienne}}</div>
+    <div class="fn">{{infos.titre}}</div>
+    <p>{{infos.adresse.rue}}, {{infos.adresse.npa}} {{infos.adresse.localite}}<br>
+       Tél. et WhatsApp {{infos.telephone}}<br>
+       {{infos.email}}</p>
+    <p class="site">institutclairdelune.ch</p>
+  </div>
+  <div class="qr">{{qr}}</div>
+</div>
