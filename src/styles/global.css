@@ -88,7 +88,7 @@ p { margin: 0 0 1em; }
 .menu a, .menu__titre { color: var(--c-lavande) !important; text-decoration: none; font-size: .98rem; }
 .menu a:hover, .menu a[aria-current="page"], .menu__titre.est-actif { color: #fff !important; }
 .menu a[aria-current="page"]:not(.bouton) { text-decoration: underline; text-decoration-color: var(--c-magenta); text-underline-offset: .45em; text-decoration-thickness: 2px; }
-.menu__titre { background: none; border: 0; padding: 0; font: inherit; cursor: pointer; }
+.menu__titre { background: none; border: 0; padding: 0; font: inherit; font-size: .98rem; cursor: pointer; }
 .menu__titre::after { content: " ▾"; font-size: .75em; opacity: .7; }
 .menu__groupe > ul { display: flex; flex-wrap: wrap; gap: .25rem 1rem; }
 .js .menu__groupe > ul { display: none; }
